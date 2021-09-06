@@ -13,7 +13,7 @@ public class TicTacToeMain {
 		int whoIsPlaying;
 		whoIsPlaying=playFirst();
 		String winOrLost=checkWinner();
-		while(winOrLost=="change turn"|| winOrLost!="draw") {
+		while(winOrLost=="change turn" && winOrLost!="draw") {
 			if(whoIsPlaying==1) {
 				int winPositionAvailability=checkForWinningPositionAvailability(COMPUTER);
 				if(winPositionAvailability!=0){
@@ -42,7 +42,7 @@ public class TicTacToeMain {
 							}
 						}
 					}
-					
+
 				}
 				whoIsPlaying=0;
 			}
@@ -74,12 +74,12 @@ public class TicTacToeMain {
 							}
 						}
 					}
-					
+
 				}
 				whoIsPlaying=1;
 			}
 			winOrLost=checkWinner();
-			
+
 			showBoard();
 		}
 		if(winOrLost.equals("X")){
@@ -97,6 +97,23 @@ public class TicTacToeMain {
 		else if(winOrLost.equals("draw")) {
 			System.out.println("It is a draw");
 		}
+		wantToPlayAnother();
+	}
+
+	private static void wantToPlayAnother() {
+		System.out.println("Do you want to play another game: ");
+		Scanner scannerObject=new Scanner(System.in);
+		String wantToPlay=scannerObject.next().toLowerCase();
+		System.out.println(wantToPlay);
+		if(wantToPlay.equals("yes")) {
+			main(null);
+
+		}
+		else
+		{
+			return;
+		}
+
 	}
 
 	private static int checkRemainingSpaces() {
@@ -135,7 +152,7 @@ public class TicTacToeMain {
 	private static int checkIfOpponentWinningPositionAvailable(char opponent) {
 		int availability=checkForWinningPositionAvailability(opponent);
 		return availability;
-		
+
 	}
 
 	private static int checkForWinningPositionAvailability(char whoIsPlaying) {
