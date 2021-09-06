@@ -28,11 +28,7 @@ public class TicTacToeMain {
 			System.out.println("The selected location is already filled. Choose another.");
 			selectLocation();
 		}
-		else
-		{
-			boardArray[selectedLocation]=PLAYER;
-		}
-
+		
 	}
 
 	public static void board() {
