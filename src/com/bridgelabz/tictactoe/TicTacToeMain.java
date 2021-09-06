@@ -2,7 +2,7 @@ package com.bridgelabz.tictactoe;
 import java.util.Scanner;
 public class TicTacToeMain {
 	
-	static char boardArray[]=new char[11];
+	static char boardArray[]=new char[10];
 	static char PLAYER;
 	static char COMPUTER;
 	
@@ -35,9 +35,17 @@ public class TicTacToeMain {
 	}
 	
 	public static void showBoard() {
+		System.out.println("Board:");
+		int count=0;
 		for(int index=1;index<boardArray.length;index++)
 		{
-			System.out.println(boardArray[index]+" ");
+			System.out.print(boardArray[index]+"|");
+			count++;
+			if(count==3)
+			{
+				count=0;
+				System.out.println();
+			}
 		}
 	}
 }
