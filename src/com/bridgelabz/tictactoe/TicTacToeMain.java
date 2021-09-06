@@ -28,6 +28,14 @@ public class TicTacToeMain {
 					{
 						boardArray[availabilty]=COMPUTER;
 					}
+					else
+					{
+						int cornerAvailabilty=checkForAvailableCorners();
+						if(cornerAvailabilty!=0)
+						{
+							boardArray[cornerAvailabilty]=COMPUTER;
+						}
+					}
 					
 				}
 				whoIsPlaying=0;
@@ -46,6 +54,14 @@ public class TicTacToeMain {
 					{
 						boardArray[availabilty]=PLAYER;
 					}
+					else
+					{
+						int cornerAvailabilty=checkForAvailableCorners();
+						if(cornerAvailabilty!=0)
+						{
+							boardArray[cornerAvailabilty]=COMPUTER;
+						}
+					}
 					
 				}
 				whoIsPlaying=1;
@@ -53,6 +69,19 @@ public class TicTacToeMain {
 			winOrLost=checkWinner();
 			showBoard();
 		}
+	}
+
+	private static int checkForAvailableCorners() {
+		if(boardArray[1]==' ')
+			return 1;
+		else if(boardArray[3]==' ')
+			return 3;
+		else if(boardArray[7]==' ')
+			return 7;
+		else if(boardArray[9]==' ')
+			return 9;
+		else
+			return 0;
 	}
 
 	private static int checkIfOpponentWinningPositionAvailable(char opponent) {
