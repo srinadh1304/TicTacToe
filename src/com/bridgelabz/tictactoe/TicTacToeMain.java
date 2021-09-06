@@ -32,7 +32,6 @@ public class TicTacToeMain {
 		{
 			boardArray[selectedLocation]=PLAYER;
 		}
-
 	}
 
 	public static void board() {
