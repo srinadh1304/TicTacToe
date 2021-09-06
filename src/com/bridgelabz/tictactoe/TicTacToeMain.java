@@ -10,56 +10,68 @@ public class TicTacToeMain {
 		System.out.println("Welcome to tic tac toe program");
 		board();
 		showBoard();
-		int whoIsPlaying=playFirst();
-		selectLocation();
-		showBoard();
+		int whoIsPlaying;
+		whoIsPlaying=playFirst();
 		String winOrLost=checkWinner();
 		while(winOrLost=="change turn") {
 			if(whoIsPlaying==1) {
 				int winPositionAvailability=checkForWinningPositionAvailability(COMPUTER);
-				if(winPositionAvailability!=0)
-				{
+				if(winPositionAvailability!=0){
 					boardArray[winPositionAvailability]=COMPUTER;
 				}
-				else
-				{
+				else{
 					int availabilty=checkIfOpponentWinningPositionAvailable(PLAYER);
-					if(availabilty!=0)
-					{
+					if(availabilty!=0){
 						boardArray[availabilty]=COMPUTER;
 					}
-					else
-					{
+					else{
 						int cornerAvailabilty=checkForAvailableCorners();
-						if(cornerAvailabilty!=0)
-						{
+						if(cornerAvailabilty!=0){
 							boardArray[cornerAvailabilty]=COMPUTER;
+						}
+						else {
+							int centerAvailability=checkCenterAvailability();
+							if(centerAvailability!=0) {
+								boardArray[centerAvailability]=COMPUTER;
+							}
+							else {
+								int remainingSpace=checkRemainingSpaces();
+								if(remainingSpace!=0) {
+									boardArray[remainingSpace]=COMPUTER;
+								}
+							}
 						}
 					}
 					
 				}
 				whoIsPlaying=0;
 			}
-			else if(whoIsPlaying==0)
-			{
+			else if(whoIsPlaying==0){
 				int winPositionAvailability=checkForWinningPositionAvailability(PLAYER);
-				if(winPositionAvailability!=0)
-				{
+				if(winPositionAvailability!=0){
 					boardArray[winPositionAvailability]=PLAYER;
 				}
-				else
-				{
+				else{
 					int availabilty=checkIfOpponentWinningPositionAvailable(COMPUTER);
-					if(availabilty!=0)
-					{
+					if(availabilty!=0){
 						boardArray[availabilty]=PLAYER;
 					}
-					else
-					{
+					else{
 						int cornerAvailabilty=checkForAvailableCorners();
-						if(cornerAvailabilty!=0)
-						{
-							boardArray[cornerAvailabilty]=COMPUTER;
+						if(cornerAvailabilty!=0){
+							boardArray[cornerAvailabilty]=PLAYER;
+						}
+						else {
+							int centerAvailability=checkCenterAvailability();
+							if(centerAvailability!=0) {
+								boardArray[centerAvailability]=PLAYER;
+							}
+							else {
+								int remainingSpace=checkRemainingSpaces();
+								if(remainingSpace!=0) {
+									boardArray[remainingSpace]=COMPUTER;
+								}
+							}
 						}
 					}
 					
@@ -67,8 +79,44 @@ public class TicTacToeMain {
 				whoIsPlaying=1;
 			}
 			winOrLost=checkWinner();
+			
 			showBoard();
 		}
+		if(winOrLost.equals("X")){
+			if(PLAYER=='X')
+				System.out.println("Player has won");
+			else
+				System.out.println("Computer has won");
+		}
+		else if(winOrLost.equals("O")){
+			if(PLAYER=='O')
+				System.out.println("Player has won");
+			else
+				System.out.println("Computer has won");
+		}
+		else if(winOrLost.equals("draw")) {
+			System.out.println("It is a draw");
+		}
+	}
+
+	private static int checkRemainingSpaces() {
+		if(boardArray[2]==' ')
+			return 2;
+		else if(boardArray[4]==' ')
+			return 4;
+		else if(boardArray[6]==' ')
+			return 6;
+		else if(boardArray[8]==' ')
+			return 8;
+		else
+			return 0;
+	}
+
+	private static int checkCenterAvailability() {
+		if(boardArray[5]==' ')
+			return 5;
+		else
+			return 0;
 	}
 
 	private static int checkForAvailableCorners() {
