@@ -13,7 +13,7 @@ public class TicTacToeMain {
 		int whoIsPlaying;
 		whoIsPlaying=playFirst();
 		String winOrLost=checkWinner();
-		while(winOrLost=="change turn") {
+		while(winOrLost=="change turn"|| winOrLost!="draw") {
 			if(whoIsPlaying==1) {
 				int winPositionAvailability=checkForWinningPositionAvailability(COMPUTER);
 				if(winPositionAvailability!=0){
