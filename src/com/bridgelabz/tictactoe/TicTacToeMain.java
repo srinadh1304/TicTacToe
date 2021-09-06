@@ -13,8 +13,59 @@ public class TicTacToeMain {
 		playFirst();
 		selectLocation();
 		showBoard();
+		String winOrLost=checkWinner();
+		while(winOrLost=="change turn"){
+			winOrLost=checkWinner();
+		}
 	}
+	static String checkWinner()
+	{
+		for (int index = 1; index < 9; index++) {
+			String line = null;
 
+			switch (index) {
+			case 1:
+				line = Character.toString(boardArray[1]) + Character.toString(boardArray[2]) + Character.toString(boardArray[3]);
+				break;
+			case 2:
+				line = Character.toString(boardArray[4]) + Character.toString(boardArray[5]) + Character.toString(boardArray[6]);
+				break;
+			case 3:
+				line = Character.toString(boardArray[7]) + Character.toString(boardArray[8]) + Character.toString(boardArray[9]);
+				break;
+			case 4:
+				line = Character.toString(boardArray[1]) + Character.toString(boardArray[4]) + Character.toString(boardArray[7]);
+				break;
+			case 5:
+				line = Character.toString(boardArray[2]) + Character.toString(boardArray[5]) + Character.toString(boardArray[8]);
+				break;
+			case 6:
+				line = Character.toString(boardArray[3]) + Character.toString(boardArray[6]) + Character.toString(boardArray[9]);
+				break;
+			case 7:
+				line = Character.toString(boardArray[1]) + Character.toString(boardArray[5]) + Character.toString(boardArray[9]);
+				break;
+			case 8:
+				line = Character.toString(boardArray[3]) + Character.toString(boardArray[5]) + Character.toString(boardArray[7]);
+				break;
+			}
+			if (line.equals("XXX")) {
+				return "X";
+			}
+
+			// For O winner
+			else if (line.equals("OOO")) {
+				return "O";
+			}
+		}
+
+		for (int a = 1; a < 10; a++) {
+			if (boardArray[a]==' ') {
+				return "change turn";
+			}
+		}
+		return "draw";
+	}
 
 	private static void playFirst() {
 		double playFirst=Math.random();
@@ -24,7 +75,7 @@ public class TicTacToeMain {
 		else {
 			System.out.println("Computer plays first");
 		}
-		
+
 	}
 
 
