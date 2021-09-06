@@ -21,6 +21,15 @@ public class TicTacToeMain {
 				{
 					boardArray[winPositionAvailability]=COMPUTER;
 				}
+				else
+				{
+					int availabilty=checkIfOpponentWinningPositionAvailable(PLAYER);
+					if(availabilty!=0)
+					{
+						boardArray[availabilty]=COMPUTER;
+					}
+					
+				}
 				whoIsPlaying=0;
 			}
 			else if(whoIsPlaying==0)
@@ -30,11 +39,26 @@ public class TicTacToeMain {
 				{
 					boardArray[winPositionAvailability]=PLAYER;
 				}
+				else
+				{
+					int availabilty=checkIfOpponentWinningPositionAvailable(COMPUTER);
+					if(availabilty!=0)
+					{
+						boardArray[availabilty]=PLAYER;
+					}
+					
+				}
 				whoIsPlaying=1;
 			}
 			winOrLost=checkWinner();
 			showBoard();
 		}
+	}
+
+	private static int checkIfOpponentWinningPositionAvailable(char opponent) {
+		int availability=checkForWinningPositionAvailability(opponent);
+		return availability;
+		
 	}
 
 	private static int checkForWinningPositionAvailability(char whoIsPlaying) {
