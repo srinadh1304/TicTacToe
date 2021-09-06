@@ -10,14 +10,110 @@ public class TicTacToeMain {
 		System.out.println("Welcome to tic tac toe program");
 		board();
 		showBoard();
-		playFirst();
+		int whoIsPlaying=playFirst();
 		selectLocation();
 		showBoard();
 		String winOrLost=checkWinner();
-		while(winOrLost=="change turn"){
+		while(winOrLost=="change turn") {
+			if(whoIsPlaying==1) {
+				int winPositionAvailability=checkForWinningPositionAvailability(COMPUTER);
+				if(winPositionAvailability!=0)
+				{
+					boardArray[winPositionAvailability]=COMPUTER;
+				}
+				whoIsPlaying=0;
+			}
+			else if(whoIsPlaying==0)
+			{
+				int winPositionAvailability=checkForWinningPositionAvailability(PLAYER);
+				if(winPositionAvailability!=0)
+				{
+					boardArray[winPositionAvailability]=PLAYER;
+				}
+				whoIsPlaying=1;
+			}
 			winOrLost=checkWinner();
+			showBoard();
 		}
 	}
+
+	private static int checkForWinningPositionAvailability(char whoIsPlaying) {
+		if (boardArray[1] == whoIsPlaying && boardArray[2] == whoIsPlaying && boardArray[3] == ' ') {
+			return 3;
+		}
+		if (boardArray[1] == whoIsPlaying && boardArray[3] == whoIsPlaying && boardArray[2] == ' ') {
+			return 2;
+		}
+		if (boardArray[3] == whoIsPlaying && boardArray[2] == whoIsPlaying && boardArray[1] == ' ') {
+			return 1;
+		}
+		if (boardArray[4] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[6] == ' ') {
+			return 6;
+		}
+		if (boardArray[4] == whoIsPlaying && boardArray[6] == whoIsPlaying && boardArray[5] == ' ') {
+			return 5;
+		}
+		if (boardArray[6] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[4] == ' ') {
+			return 4;
+		}
+		if (boardArray[7] == whoIsPlaying && boardArray[8] == whoIsPlaying && boardArray[9] == ' ') {
+			return 9;
+		}
+		if (boardArray[7] == whoIsPlaying && boardArray[9] == whoIsPlaying && boardArray[8] == ' ') {
+			return 8;
+		}
+		if (boardArray[9] == whoIsPlaying && boardArray[8] == whoIsPlaying && boardArray[7] == ' ') {
+			return 7;
+		}
+		if (boardArray[1] == whoIsPlaying && boardArray[4] == whoIsPlaying && boardArray[7] == ' ') {
+			return 7;
+		}
+		if (boardArray[1] == whoIsPlaying && boardArray[7] == whoIsPlaying && boardArray[4] == ' ') {
+			return 4;
+		}
+		if (boardArray[7] == whoIsPlaying && boardArray[4] == whoIsPlaying && boardArray[1] == ' ') {
+			return 1;
+		}
+		if (boardArray[2] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[8] == ' ') {
+			return 8;
+		}
+		if (boardArray[2] == whoIsPlaying && boardArray[8] == whoIsPlaying && boardArray[5] == ' ') {
+			return 5;
+		}
+		if (boardArray[8] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[2] == ' ') {
+			return 2;
+		}
+		if (boardArray[3] == whoIsPlaying && boardArray[6] == whoIsPlaying && boardArray[9] == ' ') {
+			return 9;
+		}
+		if (boardArray[3] == whoIsPlaying && boardArray[9] == whoIsPlaying && boardArray[6] == ' ') {
+			return 6;
+		}
+		if (boardArray[9] == whoIsPlaying && boardArray[6] == whoIsPlaying && boardArray[3] == ' ') {
+			return 3;
+		}
+		if (boardArray[1] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[9] == ' ') {
+			return 9;
+		}
+		if (boardArray[1] == whoIsPlaying && boardArray[9] == whoIsPlaying && boardArray[5] == ' ') {
+			return 5;
+		}
+		if (boardArray[9] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[1] == ' ') {
+			return 2;
+		}
+		if (boardArray[3] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[7] == ' ') {
+			return 7;
+		}
+		if (boardArray[3] == whoIsPlaying && boardArray[7] == whoIsPlaying && boardArray[5] == ' ') {
+			return 5;
+		}
+		if (boardArray[7] == whoIsPlaying && boardArray[5] == whoIsPlaying && boardArray[3] == ' ') {
+			return 3;
+		} else
+			return 0;
+
+	}
+
 	static String checkWinner()
 	{
 		for (int index = 1; index < 9; index++) {
@@ -53,7 +149,6 @@ public class TicTacToeMain {
 				return "X";
 			}
 
-			// For O winner
 			else if (line.equals("OOO")) {
 				return "O";
 			}
@@ -67,13 +162,15 @@ public class TicTacToeMain {
 		return "draw";
 	}
 
-	private static void playFirst() {
+	private static int playFirst() {
 		double playFirst=Math.random();
 		if(playFirst<0.5){
 			System.out.println("Player plays first");
+			return 0;
 		}
 		else {
 			System.out.println("Computer plays first");
+			return 1;
 		}
 
 	}
