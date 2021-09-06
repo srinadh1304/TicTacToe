@@ -1,15 +1,35 @@
 package com.bridgelabz.tictactoe;
-
+import java.util.Scanner;
 public class TicTacToeMain {
-
+	
+	static char boardArray[]=new char[11];
+	static char PLAYER;
+	static char COMPUTER;
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome to tic tac toe program");
+		board();
+		PLAYER=choose();
+		COMPUTER=(PLAYER=='X')?'O':'X';
+		System.out.println(PLAYER+" "+COMPUTER);
 	}
-	public void Board() {
-		char boardArray[]=new char[11];
+	
+	public static void board() {
+		
 		for(int size=1;size<boardArray.length;size++)
 		{
-			boardArray[size]='\0';
+			boardArray[size]=' ';
 		}
+	}
+	
+	public static char choose()
+	{
+		char inputChoice=' ';
+		Scanner scannerObject=new Scanner(System.in);
+		System.out.println("Enter the input");
+		inputChoice=scannerObject.next().toUpperCase().charAt(0);
+		scannerObject.close();
+		return inputChoice;
+		
 	}
 }
